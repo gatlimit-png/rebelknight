@@ -1,0 +1,8 @@
+{
+  "name": "Rebel Eklenti Deposu",
+  "description": "Hdfilmcehennemi ve diğer özel eklentiler.",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://githubusercontent.com"
+  ]
+}
