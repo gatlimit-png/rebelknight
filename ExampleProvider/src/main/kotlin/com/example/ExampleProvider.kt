@@ -78,14 +78,15 @@ class ExampleProvider : MainAPI() {
             }
 
             if (playerUrl.isNotEmpty() && playerUrl.contains("vidmoly")) {
-                // Depreke uyarısını tamamen yok etmek için yeni nesil 'newExtractorLink' metodunu çağırıyoruz
-                // Bu metodun kurucu imzasında parametre karmaşası yoktur ve uyarılara takılmaz.
+                // Adlandırılmış parametre uyuşmazlığını aşmak için callback'e doğrudan nesne ataması yapıyoruz.
+                // Bu yapı builder fonksiyonu yerine doğrudan sınıf üretecini kullanarak esneklik sağlar.
                 callback.invoke(
-                    newExtractorLink(
-                        name = "Vidmoly",
+                    ExtractorLink(
                         source = "Vidmoly",
+                        name = "Vidmoly",
                         url = playerUrl,
-                        referer = data
+                        referer = data,
+                        quality = Qualities.Unknown.value
                     )
                 )
             }
