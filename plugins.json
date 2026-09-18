@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Hdfilmcehennemi",
+    "description": "Sıfırdan hazırladığım ilk film/dizi eklentisi.",
+    "authors": ["Rebel"],
+    "version": 1,
+    "versionCode": 1,
+    "url": "https://githubusercontent.com",
+    "language": "tr",
+    "tv": false
+  }
+]
