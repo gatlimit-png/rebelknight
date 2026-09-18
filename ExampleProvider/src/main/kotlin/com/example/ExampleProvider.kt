@@ -1,21 +1,25 @@
 package com.example
+import com.lagradost.cloudstream3.*
+import com.lagradost.cloudstream3.utils.*
 
-import com.lagradost.cloudstream3.MainAPI
-import com.lagradost.cloudstream3.SearchResponse
-import com.lagradost.cloudstream3.TvType
+class SampleProvider : MainAPI() { 
+    override var mainUrl = "https://www.hdfilmcehennemi.nl/"
+    override var name = "Benim Eklentim"
+    override val supportedTypes = setOf(TvType.Movie, TvType.TvSeries)
 
-class ExampleProvider : MainAPI() { // All providers must be an instance of MainAPI
-    override var mainUrl = "https://example.com/" 
-    override var name = "Example provider"
-    override val supportedTypes = setOf(TvType.Movie)
-
-    override var lang = "en"
-
-    // Enable this when your provider has a main page
-    override val hasMainPage = true
-
-    // This function gets called when you search for something
-    override suspend fun search(query: String): List<SearchResponse> {
-        return listOf()
+    // Ana sayfada görünecek içerikleri listeleme fonksiyonu
+    override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse? {
+        val items = ArrayList<SearchResponse>()
+        
+        // Örnek bir film kartı ekleme
+        items.add(MovieSearchResponse(
+            name = "Örnek Film",
+            url = "https://www.hdfilmcehennemi.nl/",
+            apiName = this.name,
+            type = TvType.Movie,
+            posterUrl = "https://gorsel-linki.com"
+        ))
+        
+        return HomePageResponse(arrayListOf(HomePageList("Öne Çıkanlar", items)), hasNext = false)
     }
 }
