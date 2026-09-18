@@ -4,7 +4,6 @@ import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
 import org.jsoup.Jsoup
 
-// Sınıf adını dosya adıyla birebir aynı (ExampleProvider) yaptık
 class ExampleProvider : MainAPI() { 
     override var mainUrl = "https://hdfilmcehennemi.nl"
     override var name = "Hdfilmcehennemi"
@@ -62,7 +61,7 @@ class ExampleProvider : MainAPI() {
         }
     }
 
-     // 3. VİDEO KAYNAKLARINI ÇÖZME
+    // 3. VİDEO KAYNAKLARINI ÇÖZME
     override suspend fun loadLinks(
         data: String,
         isCasting: Boolean,
@@ -79,17 +78,19 @@ class ExampleProvider : MainAPI() {
             }
 
             if (playerUrl.isNotEmpty() && playerUrl.contains("vidmoly")) {
-                // Depreke uyarısını önlemek için newExtractorLink fonksiyonunu çağırıyoruz
+                // Parametre adları refererUrl olarak düzeltildi ve kalite ataması builder içerisine taşındı
                 callback.invoke(
                     newExtractorLink(
                         source = "Vidmoly",
                         name = "Vidmoly",
                         url = playerUrl,
-                        referer = data,
-                        quality = Qualities.Unknown.value
-                    )
+                        refererUrl = data
+                    ) {
+                        this.quality = Qualities.Unknown.value
+                    }
                 )
             }
         }
         return true
     }
+}
