@@ -78,15 +78,14 @@ class ExampleProvider : MainAPI() {
             }
 
             if (playerUrl.isNotEmpty() && playerUrl.contains("vidmoly")) {
-                // Herhangi bir parametre ismi (named argument) karmaşasına girmeden nesneyi doğrudan oluşturuyoruz
+                // Depreke uyarısını tamamen yok etmek için yeni nesil 'newExtractorLink' metodunu çağırıyoruz
+                // Bu metodun kurucu imzasında parametre karmaşası yoktur ve uyarılara takılmaz.
                 callback.invoke(
-                    ExtractorLink(
-                        "Vidmoly",           // source
-                        "Vidmoly",           // name
-                        playerUrl,           // url
-                        data,                // referer
-                        Qualities.Unknown.value, // quality
-                        false                // isM3u8
+                    newExtractorLink(
+                        name = "Vidmoly",
+                        source = "Vidmoly",
+                        url = playerUrl,
+                        referer = data
                     )
                 )
             }
