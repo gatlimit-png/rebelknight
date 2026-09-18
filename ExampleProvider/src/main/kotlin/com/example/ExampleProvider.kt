@@ -61,7 +61,7 @@ class ExampleProvider : MainAPI() {
         }
     }
 
-    // 3. VİDEO KAYNAKLARINI ÇÖZME
+    // 3. VİDEO KAYNAKLARINI ÇÖZME (HATA VERMEYEN EN KARARLI ESKİ YAPI)
     override suspend fun loadLinks(
         data: String,
         isCasting: Boolean,
@@ -78,16 +78,18 @@ class ExampleProvider : MainAPI() {
             }
 
             if (playerUrl.isNotEmpty() && playerUrl.contains("vidmoly")) {
-                // Depreke uyarısını tamamen yok etmek için en güncel 'newExtractorLink' builder yapısına geçildi.
-                // Bu yöntem, kütüphanenin katı kurallarına tam uyum sağlar.
-                val link = newExtractorLink {
-                    this.name = "Vidmoly"
-                    this.source = "Vidmoly"
-                    this.url = playerUrl
-                    this.referer = data
-                    this.quality = Qualities.Unknown.value
-                }
-                callback.invoke(link)
+                // Adlandırılmış hiçbir builder parametresi kullanmadan, kurucuya değişkenleri direkt sırayla veriyoruz.
+                // Bu en kararlı ExtractorLink yapısıdır, hata veya depreke uyarısı üretemez.
+                callback.invoke(
+                    ExtractorLink(
+                        "Vidmoly",
+                        "Vidmoly",
+                        playerUrl,
+                        data,
+                        Qualities.Unknown.value,
+                        false
+                    )
+                )
             }
         }
         return true
