@@ -61,7 +61,7 @@ class ExampleProvider : MainAPI() {
         }
     }
 
-    // 3. VİDEO KAYNAKLARINI ÇÖZME (HATA VERMEYEN EN KARARLI ESKİ YAPI)
+    // 3. VİDEO KAYNAKLARINI ÇÖZME (SIFIR UYARI - KESİN ÇÖZÜM)
     override suspend fun loadLinks(
         data: String,
         isCasting: Boolean,
@@ -77,19 +77,11 @@ class ExampleProvider : MainAPI() {
                 playerUrl = "https:$playerUrl"
             }
 
+            // Hata üreten ExtractorLink çağrılarını tamamen sildik.
+            // Cloudstream'in yerleşik otomatik çözücü motorunu çağırıyoruz. 
+            // Bu fonksiyon uyarılara veya katı derleme kurallarına takılmaz.
             if (playerUrl.isNotEmpty() && playerUrl.contains("vidmoly")) {
-                // Adlandırılmış hiçbir builder parametresi kullanmadan, kurucuya değişkenleri direkt sırayla veriyoruz.
-                // Bu en kararlı ExtractorLink yapısıdır, hata veya depreke uyarısı üretemez.
-                callback.invoke(
-                    ExtractorLink(
-                        "Vidmoly",
-                        "Vidmoly",
-                        playerUrl,
-                        data,
-                        Qualities.Unknown.value,
-                        false
-                    )
-                )
+                loadExtractor(playerUrl, data, subtitleCallback, callback)
             }
         }
         return true
