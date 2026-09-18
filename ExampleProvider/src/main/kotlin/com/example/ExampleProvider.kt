@@ -78,17 +78,16 @@ class ExampleProvider : MainAPI() {
             }
 
             if (playerUrl.isNotEmpty() && playerUrl.contains("vidmoly")) {
-                // Adlandırılmış parametre uyuşmazlığını aşmak için callback'e doğrudan nesne ataması yapıyoruz.
-                // Bu yapı builder fonksiyonu yerine doğrudan sınıf üretecini kullanarak esneklik sağlar.
-                callback.invoke(
-                    ExtractorLink(
-                        source = "Vidmoly",
-                        name = "Vidmoly",
-                        url = playerUrl,
-                        referer = data,
-                        quality = Qualities.Unknown.value
-                    )
-                )
+                // Depreke uyarısını tamamen yok etmek için en güncel 'newExtractorLink' builder yapısına geçildi.
+                // Bu yöntem, kütüphanenin katı kurallarına tam uyum sağlar.
+                val link = newExtractorLink {
+                    this.name = "Vidmoly"
+                    this.source = "Vidmoly"
+                    this.url = playerUrl
+                    this.referer = data
+                    this.quality = Qualities.Unknown.value
+                }
+                callback.invoke(link)
             }
         }
         return true
