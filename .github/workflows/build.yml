@@ -1,3 +1,12 @@
+name: Build and Publish
+
+on:
+  push:
+    branches:
+      - master # Eğer ana dalınız main ise burayı main yapın
+
+jobs:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -10,4 +19,4 @@
         with:
           ref: "builds"
           path: "builds"
-        continue-on-error: true # <-- Bunu ekliyoruz. Dal yoksa hata vermeden devam etmesini sağlar.
+        continue-on-error: true
