@@ -78,16 +78,16 @@ class ExampleProvider : MainAPI() {
             }
 
             if (playerUrl.isNotEmpty() && playerUrl.contains("vidmoly")) {
-                // Parametre adları refererUrl olarak düzeltildi ve kalite ataması builder içerisine taşındı
+                // Herhangi bir parametre ismi (named argument) karmaşasına girmeden nesneyi doğrudan oluşturuyoruz
                 callback.invoke(
-                    newExtractorLink(
-                        source = "Vidmoly",
-                        name = "Vidmoly",
-                        url = playerUrl,
-                        refererUrl = data
-                    ) {
-                        this.quality = Qualities.Unknown.value
-                    }
+                    ExtractorLink(
+                        "Vidmoly",           // source
+                        "Vidmoly",           // name
+                        playerUrl,           // url
+                        data,                // referer
+                        Qualities.Unknown.value, // quality
+                        false                // isM3u8
+                    )
                 )
             }
         }
