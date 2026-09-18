@@ -1,12 +1,8 @@
-[
-  {
-    "name": "Hdfilmcehennemi",
-    "description": "Sıfırdan hazırladığım ilk film/dizi eklentisi.",
-    "authors": ["Rebel"],
-    "version": 1,
-    "versionCode": 1,
-    "url": "https://raw.githubusercontent.com/gatlimit-png/rebelknight/refs/heads/master/plugins.json",
-    "language": "tr",
-    "tv": false
-  }
-]
+{
+  "name": "Rebel Eklenti Deposu",
+  "description": "Hdfilmcehennemi ve diğer özel eklentiler.",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://githubusercontent.com"
+  ]
+}
