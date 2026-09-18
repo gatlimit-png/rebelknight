@@ -12,8 +12,8 @@ class ExamplePlugin: Plugin() {
     override fun load(context: Context) {
         activity = context as? AppCompatActivity
 
-        // All providers should be added in this manner
-        registerMainAPI(ExampleProvider())
+        // Sağlayıcı adını SampleProvider() olarak güncelledik
+        registerMainAPI(SampleProvider())
 
         openSettings = {
             val frag = BlankFragment(this)
