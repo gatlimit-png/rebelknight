@@ -13,7 +13,7 @@ class ExamplePlugin: Plugin() {
         activity = context as? AppCompatActivity
 
         // Sağlayıcı adını SampleProvider() olarak güncelledik
-        registerMainAPI(SampleProvider())
+        registerMainAPI(ExampleProvider())
 
         openSettings = {
             val frag = BlankFragment(this)

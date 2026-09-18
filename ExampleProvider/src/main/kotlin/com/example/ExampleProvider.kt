@@ -62,7 +62,7 @@ class ExampleProvider : MainAPI() {
         }
     }
 
-    // 3. VİDEO KAYNAKLARINI ÇÖZME
+     // 3. VİDEO KAYNAKLARINI ÇÖZME
     override suspend fun loadLinks(
         data: String,
         isCasting: Boolean,
@@ -79,8 +79,9 @@ class ExampleProvider : MainAPI() {
             }
 
             if (playerUrl.isNotEmpty() && playerUrl.contains("vidmoly")) {
+                // Depreke uyarısını önlemek için newExtractorLink fonksiyonunu çağırıyoruz
                 callback.invoke(
-                    ExtractorLink(
+                    newExtractorLink(
                         source = "Vidmoly",
                         name = "Vidmoly",
                         url = playerUrl,
@@ -92,4 +93,3 @@ class ExampleProvider : MainAPI() {
         }
         return true
     }
-}
