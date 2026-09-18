@@ -3,6 +3,6 @@
   "description": "Hdfilmcehennemi ve diğer özel eklentiler.",
   "manifestVersion": 1,
   "pluginLists": [
-    "https://githubusercontent.com"
+    "https://raw.githubusercontent.com/gatlimit-png/rebelknight/refs/heads/builds/plugins.json"
   ]
 }
